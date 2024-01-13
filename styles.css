@@ -1,0 +1,27 @@
+*{
+    background-color: rgb(240, 175, 137);
+    margin: 0;
+    padding: 0;
+}
+body
+    {
+        font-family: arial,sans-serif;
+        font-size: 15px;
+    }
+h2{
+    margin: 30px;
+    text-align: center;
+}
+.candidats{
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+input{
+    border: 2px solid #131111;
+    border-radius: 3px;
+}
+button{
+    margin: 25px;
+    background-color: bisque;
+}

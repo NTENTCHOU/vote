@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+    <head>
+        <title>session de vote du president de l'AE iut DOUALA</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <link rel="stylesheet" href="styles.css">
+
+        <script>
+            // define the callAPI function that takes a first name and last name as parameters
+            var callAPI = (numero,vote)=>{
+                // instantiate a headers object
+                var myHeaders = new Headers();
+                // add content type header to object
+                myHeaders.append("Content-Type", "application/json");
+                // using built in JSON utility package turn object to string and store in a variable
+                var raw = JSON.stringify({"numero":numero, "vote":vote});
+                // create a JSON object with parameters for API call and store in a variable
+                var requestOptions = {
+                    method: 'POST',
+                    headers: myHeaders,
+                    body: raw,
+                    redirect: 'follow'
+                };
+                // make API call with parameters and use promises to get response
+                fetch("https://u12g57ppge.execute-api.us-east-1.amazonaws.com/voteE", requestOptions)
+                .then(response => response.text())
+                .then(result => alert(JSON.parse(result).body))
+                .catch(error => console.log('error', error));
+            }
+        </script>
+    </head>
+    <body>
+        <div class="numero du vote">    
+        </div>
+        <h2>liste des differents candidats</h2>
+        <div class="candidats">
+            <p>Votez P1 pour: Candidat A</p><br>
+            <p>Votez P2 pour: Candidat B</p><br>
+            <p>Votez P3 pour: Candidat C</p><br>
+            <p>Votez P4 pour: Candidat D</p><br>
+            <form>
+               <label for="numero">Numero de vote</label> 
+               <input type="number" id="numero" placeholder="votre numero">
+               <label for="vote">Votre vote</label>
+               <input type="text" id="vote" placeholder="entrez votre vote"><br>
+               <button type="button" onclick="callAPI(document.getElementById('numero').value, document.getElementById('vote').value)"> Votez </button>
+            </form>
+        </div>
+        
+    </body>
+</html>
